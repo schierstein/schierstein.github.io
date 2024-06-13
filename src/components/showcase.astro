@@ -1,0 +1,41 @@
+---
+import { getCollection } from "astro:content";
+import ContentSection from "~/components/content-section.astro";
+import ShowcaseCard from "~/components/showcase-card.astro";
+
+const featuredSites = await getCollection(
+  "showcase",
+  ({ data }) => "featured" in data,
+);
+const orderedSites = featuredSites.sort(
+  (a, b) => a.data.featured! - b.data.featured!,
+);
+---
+
+<ContentSection title="Showcase Ibiza" id="showcase">
+  <Fragment slot="lead">
+    Check out <span class="text-primary">Meine Arbeit</span>.{" "}
+    <span class="text-primary">Hier können Sie sich meine Arbeit anschauen. </span> Webseiten bereits ab 39€/Monat.{" "}
+  </Fragment>
+  <div class="max-w-6xl space-y-2">
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {orderedSites.map((site) => <ShowcaseCard site={site} />)}
+    </div>
+    <p class="text-right text-sm">
+
+    </p>
+  </div>
+</ContentSection>
+
+<p class="font-extrabold text-2xl"> Lassen Sie uns zusammen arbeiten. Schreiben Sie mir eine Email.</p>
+<h2 class="gradient-text text-center font-extrabold tracking-tight text-6xl">kontakt@uxffm.com</h2>
+
+<style>
+  p {
+    text-align: center;
+  }
+
+  h2 {
+    text-align: center;
+  }
+</style>

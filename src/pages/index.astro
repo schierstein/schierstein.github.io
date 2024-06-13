@@ -1,0 +1,89 @@
+---
+import "@fontsource-variable/inter";
+import Features from "~/components/features.astro";
+import Footer from "~/components/footer.astro";
+import Header from "~/components/header.astro";
+import Intro from "~/components/intro.astro";
+import Showcase from "~/components/showcase.astro";
+import Splash from "~/components/splash.astro";
+import "~/styles/index.css";
+
+const { generator, site } = Astro;
+const image = new URL("social.jpg", site);
+const description =
+  "Wiesbaden-Schierstein. Ich erstelle Webseiten für Sie. Ganz egal ob Sie Design oder eine komplette Webseite brauchen. Ich helfe Ihnen.";
+---
+
+<!doctype html>
+<html lang="de" class="h-full motion-safe:scroll-smooth" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="generator" content={generator} />
+
+    <title>Webdesign Schierstein - Design aus Wiesbaden-Schierstein</title>
+    <meta name="description" content={description} />
+
+    <!-- social media -->
+    <meta property="og:title" content="Astro" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:url" content={site} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- initialize theme -->
+    <script is:inline>
+      const themeSaved = localStorage.getItem("theme");
+
+      if (themeSaved) {
+        document.documentElement.dataset.theme = themeSaved;
+      } else {
+        const prefersDark = window.matchMedia(
+          "(prefers-color-scheme: dark)",
+        ).matches;
+        document.documentElement.dataset.theme = prefersDark ? "dark" : "light";
+      }
+
+      window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", (event) => {
+          if (!localStorage.getItem("theme")) {
+            document.documentElement.dataset.theme = event.matches
+              ? "dark"
+              : "light";
+          }
+        });
+    </script>
+  </head>
+  <body
+    class="h-full overflow-x-hidden bg-default text-default text-base selection:bg-secondary selection:text-white"
+  >
+    <Header />
+    <Splash />
+    <div class="space-y-24 px-8 py-32">
+      <Intro />
+      <Features />
+
+      <h2 class="gradient-text text-center font-extrabold tracking-tight text-6xl">Egal ob Schierstein oder Wiesbaden</h2>
+  
+      <p class="max-w-xl text-center font-extrabold text-2xl center"> 
+        Ist im Prinzip das selbe. Egal wo Sie sich befinden. Ich helfe Ihnen mit Ihrer Webseite.
+      </p>
+
+      <Showcase />
+    </div>
+    <Footer />
+  </body>
+</html>
+
+
+
+<style>
+  
+  .center {
+    margin: 0 auto;
+  }
+
+</style>

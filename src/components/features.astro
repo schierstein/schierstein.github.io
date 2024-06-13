@@ -1,0 +1,71 @@
+---
+import { Icon } from "astro-icon/components";
+import ContentSection from "~/components/content-section.astro";
+import type { FeatureItem } from "~/types";
+
+const features: Array<FeatureItem> = [
+  {
+  title: "Innovative Web-Interfaces",
+  description:
+    "Verwandeln Sie Ihre Online-Präsenz mit modernen Web-Interfaces, die Benutzer fesseln und den lebendigen Geist von Wiesbaden-Schierstein widerspiegeln.",
+  icon: "mdi:palette",
+},
+
+{
+  title: "Dynamische Geschäfts-Websites",
+  description:
+    "Steigern Sie Ihr Geschäft mit dynamischen Websites, die Aufmerksamkeit erregen und in der belebten Umgebung von Wiesbaden-Schierstein für Engagement sorgen.",
+  icon: "mdi:chart-line",
+},
+
+{
+  title: "Mobile-Optimiertes Design",
+  description:
+    "Garantieren Sie eine nahtlose Interaktion mit mobil-optimierten Designs, die ein perfektes Surferlebnis auf jedem Gerät bieten.",
+  icon: "mdi:cellphone",
+},
+
+{
+  title: "Individuelle Online-Shops",
+  description:
+    "Starten Sie einen maßgeschneiderten Online-Shop, der visuelle Anziehungskraft mit erstklassiger Funktionalität verbindet und auf die Bedürfnisse der Schiersteiner Käufer zugeschnitten ist.",
+  icon: "mdi:shopping",
+},
+
+{
+  title: "Erfolg in Suchmaschinen",
+  description:
+    "Erreichen Sie Erfolg in Suchmaschinen mit Websites, die optimiert sind, um Ihre Sichtbarkeit zu erhöhen und organischen Traffic im wettbewerbsintensiven Umfeld von Wiesbaden-Schierstein anzuziehen.",
+  icon: "mdi:search-web",
+},
+
+{
+  title: "Umfassendes Website-Management",
+  description:
+    "Halten Sie Ihre Website in Bestform mit umfassenden Management-Dienstleistungen, sodass Sie sich auf Ihre Kerngeschäftsaktivitäten konzentrieren können.",
+  icon: "mdi:settings",
+},
+
+];
+
+---
+
+<ContentSection title="Mein Service für Schierstein" id="service">
+  <Fragment slot="lead">
+    Ganz egal ob WordPress, Webdesign oder SEO. Ich helfe Ihnen schnell und einfach zu einem perfekten Internetauftritt.
+  </Fragment>
+  <ul class="grid max-w-6xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+    {
+      features.map(({ title, description, icon }) => (
+        <li class="flex flex-col items-center gap-4 border border-default bg-offset p-6">
+          <div class="size-16 rounded-full border-2 border-current p-3">
+            <Icon name={icon} class="size-full" />
+          </div>
+          <p class="text-center font-extrabold text-xl">{title}</p>
+          <p class="text-center text-offset text-sm">{description}</p>
+        </li>
+      ))
+    }
+  </ul>
+  
+</ContentSection>
